@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Three-Gen Design Pattern</title>
+    <meta name="description" content="Three generations between the platform and the application, described with the actual classes in this repository.">
+    <link rel="icon" href="assets/img/shape-mark.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/controls.css">
+    <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+    <div class="site">
+        <header class="site-masthead">
+            <div class="site-masthead__identity">
+                <shape-mark mark-size="mark"></shape-mark>
+                <div class="site-masthead__wordmark">
+                    <span class="site-masthead__name">The Three-Gen Design Pattern</span>
+                    <span class="site-masthead__tagline">Reference &middot; read from the live classes</span>
+                </div>
+            </div>
+
+            <div class="site-masthead__spacer"></div>
+
+            <nav class="site-nav" aria-label="Sections of this site">
+                <a href="index.html">Space</a>
+                <a href="controls.html">Controls</a>
+                <a href="three-gen.html" aria-current="page">Three-Gen</a>
+            </nav>
+        </header>
+
+        <main class="site-main">
+            <p class="site-lede">Three generations between the platform and the application, and no more.</p>
+
+            <div class="site-columns site-space-top-large">
+                <aside class="site-column--aside">
+                    <tg-panel heading="The ladder" variant="quiet" flush>
+                        <div class="lineage-ladder">
+                            <span class="lineage-ladder__step">HTMLElement</span>
+                            <span class="lineage-ladder__arrow">&darr;</span>
+                            <span class="lineage-ladder__step">AbstractElement <em>&mdash; Gen 1</em></span>
+                            <span class="lineage-ladder__arrow">&darr;</span>
+                            <span class="lineage-ladder__step">TreeView <em>&mdash; Gen 2</em></span>
+                            <span class="lineage-ladder__arrow">&darr;</span>
+                            <span class="lineage-ladder__step">ShapeProjectTree <em>&mdash; Gen 3</em></span>
+                        </div>
+                        <p class="site-figure-note site-space-top">Dependency runs one way only: Gen 3 &rarr; Gen 2 &rarr; Gen 1 &rarr; HTMLElement.</p>
+                    </tg-panel>
+
+                    <tg-panel heading="Checked at load" variant="quiet" flush>
+                        <div id="verdict" class="verdict">
+                            <span id="verdict-text">Inspecting the classes&hellip;</span>
+                        </div>
+                        <p class="site-figure-note site-space-top-small">This verdict is produced by walking prototype chains in your browser, not by reading a table.</p>
+                    </tg-panel>
+                </aside>
+
+                <div class="site-column--main">
+
+                    <tg-panel heading="What the pattern says" variant="quiet" flush>
+                        <div class="site-prose">
+                            <p>Generation one is abstract and small. It establishes identity, the custom element lifecycle, ownership of the DOM an element creates, listeners that are guaranteed to be removable, and a single abstract action. It establishes nothing else, and the list of things it deliberately refuses is longer than the list of things it does.</p>
+                            <p>Generation two is concrete and immediately useful. Fifteen ordinary controls that work with no application present: text entry, lists, trees, grids, forms, a panel, a meter. Every one of them could be dropped into an unrelated project this afternoon, which is the test that keeps them honest.</p>
+                            <p>Generation three is authoritative. It is the only generation permitted to know that Shape Project Space exists, and it earns its position by binding rather than by re-implementing. A Gen-3 class that contains list rendering, tree flattening or validation logic is a Gen-3 class that has quietly become a second control library.</p>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="Why generation one is abstract">
+                        <div class="site-prose">
+                            <p>Because a base class that can be instantiated becomes a place to put things. The moment <code>new AbstractElement()</code> is legal, somebody will make one, hang behaviour on it, and the foundation will start growing features that only one caller needs.</p>
+                            <p>So the constructor refuses two things. It refuses to build an <code>AbstractElement</code> directly, and it refuses to build any subclass that has not implemented the abstract action. The second refusal is the important one: it means that a Three-Gen element which does not know what acting means cannot come into existence at all.</p>
+                        </div>
+                        <pre class="site-code">if (new.target === AbstractElement)
+{
+    throw new TypeError("AbstractElement is abstract and cannot be instantiated directly.");
+}
+
+if (this.abstractAction === AbstractElement.prototype.abstractAction)
+{
+    throw new TypeError(new.target.name + " must implement abstractAction(); Gen 1 cannot know what acting means.");
+}</pre>
+                    </tg-panel>
+
+                    <tg-panel heading="Why generation two is concrete">
+                        <div class="site-prose">
+                            <p>Because an abstract middle layer has no way to prove it is useful. A concrete library can be opened in a browser, given data, clicked on, and found wanting. The control gallery registers Gen 2 and imports no application module at all; if that page still works, the boundary is real.</p>
+                            <p>The rule that keeps the layer coherent is stricter than it first looks: a Gen-2 control may not import another Gen-2 control. Controls compose in a page, not inside each other. That is why Form has no import of Button and builds its own plain buttons, and why the two hierarchy controls share a plain model object rather than one inheriting from the other.</p>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="Why generation three is authoritative">
+                        <div class="site-prose">
+                            <p>Because somewhere the software has to be about something. Project vocabulary, routes, content, graph topology and identity all have to live somewhere, and the discipline is to put all of it in one generation rather than letting it seep downwards one convenience at a time.</p>
+                            <p>Seepage is the failure mode this pattern exists to prevent. It never arrives as a decision. It arrives as a Gen-2 control that gains one project-specific default, then a second, until the generic library is generic in name only.</p>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="The lineages in this repository" subheading="Computed in your browser from the live class objects.">
+                        <div class="specimen">
+                            <shape-generation-filter id="lineage-filter"></shape-generation-filter>
+                            <shape-lineage-view id="lineage-view"></shape-lineage-view>
+                            <p class="specimen__note">Generation is computed as the number of inheritance steps from AbstractElement, not from the folder a file sits in. The abstract action column is obtained by constructing each control and asking it. Nothing in this table is written down twice.</p>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="Why independent sessions benefit">
+                        <div class="site-prose">
+                            <p>An assistant that joins this repository tomorrow has no memory of why anything is the way it is. It has the files, and whatever the files can tell it. Everything it cannot infer, it will re-derive - and a re-derived architecture is a different architecture wearing the same names.</p>
+                            <p>The generational boundaries turn that problem into a mechanical one. A file's folder says what it may depend on. A class's base says which generation it belongs to. A control's shape is set by fourteen siblings that already exist. When an agent is asked to add a control, the cheapest correct action is to copy the pattern in front of it, and the cheapest incorrect action fails a check before it is committed.</p>
+                            <p>That is the whole claim: not that a model will understand the intent, but that the structure makes the intended move easier than the unintended one.</p>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="How the repository carries its own intent">
+                        <div class="site-prose">
+                            <p>Nine things do the work, and none of them is a comment asking politely.</p>
+                        </div>
+                        <div class="site-grid-2 site-space-top">
+                            <tg-panel heading="Folders" variant="inset" flush>
+                                <p class="specimen__note">src/gen1, src/gen2, src/gen3. A file's location is its permission set.</p>
+                            </tg-panel>
+                            <tg-panel heading="Names" variant="inset" flush>
+                                <p class="specimen__note">Every project class begins with Shape. A generic control never does.</p>
+                            </tg-panel>
+                            <tg-panel heading="Base classes" variant="inset" flush>
+                                <p class="specimen__note">Generation is inheritance distance, so it cannot be claimed, only earned.</p>
+                            </tg-panel>
+                            <tg-panel heading="Standards" variant="inset" flush>
+                                <p class="specimen__note">CODING-STANDARDS.md is short, absolute, and mostly about the DOM.</p>
+                            </tg-panel>
+                            <tg-panel heading="Checks" variant="inset" flush>
+                                <p class="specimen__note">npm run check fails on a crossed boundary, generated markup or an anonymous listener.</p>
+                            </tg-panel>
+                            <tg-panel heading="Tests" variant="inset" flush>
+                                <p class="specimen__note">The tests assert the pattern, not only the syntax: identity survives updates, listeners detach, reconnection works.</p>
+                            </tg-panel>
+                            <tg-panel heading="Examples" variant="inset" flush>
+                                <p class="specimen__note">Fifteen controls written the same way are a stronger instruction than any paragraph.</p>
+                            </tg-panel>
+                            <tg-panel heading="Decisions" variant="inset" flush>
+                                <p class="specimen__note">docs/DECISIONS.md records why, so a later session argues with the reason rather than the result.</p>
+                            </tg-panel>
+                            <tg-panel heading="Handoff" variant="inset" flush>
+                                <p class="specimen__note">docs/HANDOFF.md is the current operational state, kept short enough to stay true.</p>
+                            </tg-panel>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="The abstract action" subheading="One seam, fifteen meanings.">
+                        <div class="site-prose">
+                            <p>Generation one can state that an element acts. It cannot state what acting means, because that is exactly the knowledge a concrete control adds. The public entry point is <code>performAction()</code>, which every gesture and every programmatic call routes through; the specialisation hook is <code>abstractAction()</code>, which every concrete class must implement.</p>
+                            <p>The honest difficulty is that not every control has an obvious act. A meter mostly reports. The answer taken here was to give it a real one - acknowledge - rather than a ceremonial one, and to write the tension down in the decision record instead of hiding it.</p>
+                        </div>
+                        <tg-data-grid id="action-grid" class="site-space-top" label="Abstract action, asked of each class at load" row-key="name" selection-mode="single"></tg-data-grid>
+                    </tg-panel>
+
+                </div>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <span>Three-Gen reference &middot; documentation and runtime agree by construction</span>
+            <span><a href="controls.html">The control gallery</a> &middot; <a href="index.html">The site</a></span>
+        </footer>
+    </div>
+
+    <script type="module" src="src/app/three-gen-page.js"></script>
+</body>
+</html>

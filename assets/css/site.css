@@ -1,0 +1,723 @@
+/*
+ * GEN 3 - site stylesheet
+ * ============================================================================
+ * Layout and project identity for Shape Project Space.
+ *
+ * This is the only stylesheet allowed to know the project exists. Anything here
+ * that would be equally at home in an unrelated application probably belongs in
+ * controls.css instead.
+ */
+
+/* --------------------------------------------------------------------------
+ * Page frame
+ * -------------------------------------------------------------------------- */
+
+.site
+{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.site-masthead
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-4) var(--space-5);
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--rule-strong);
+    background: var(--paper);
+}
+
+.site-masthead__identity
+{
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-width: 0;
+}
+
+.site-masthead__wordmark
+{
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+}
+
+.site-masthead__name
+{
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    letter-spacing: -0.01em;
+}
+
+.site-masthead__tagline
+{
+    font-family: var(--font-mono);
+    font-size: var(--step-micro);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+}
+
+.site-masthead__spacer
+{
+    flex: 1 1 auto;
+}
+
+.site-masthead__meta
+{
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+}
+
+.site-nav
+{
+    display: flex;
+    gap: var(--space-4);
+    font-family: var(--font-mono);
+    font-size: var(--step-micro);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.site-nav a[aria-current="page"]
+{
+    color: var(--accent-ink);
+    text-decoration-color: var(--accent);
+}
+
+.site-main
+{
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: var(--space-6) var(--space-5) var(--space-8);
+}
+
+.site-columns
+{
+    display: grid;
+    grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+    gap: var(--space-6);
+    align-items: start;
+}
+
+.site-column--aside
+{
+    position: sticky;
+    top: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+.site-column--main
+{
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    min-width: 0;
+}
+
+.site-footer
+{
+    padding: var(--space-5);
+    border-top: var(--hairline);
+    font-family: var(--font-mono);
+    font-size: var(--step-micro);
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    justify-content: space-between;
+}
+
+.site-rule
+{
+    height: 1px;
+    background: var(--rule);
+    border: none;
+    margin: 0;
+}
+
+.site-kicker
+{
+    font-family: var(--font-mono);
+    font-size: var(--step-micro);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+}
+
+.site-prose
+{
+    max-width: var(--measure);
+    font-family: var(--font-serif);
+    font-size: var(--step-1);
+    line-height: 1.62;
+}
+
+.site-prose p + p
+{
+    margin-top: var(--space-4);
+}
+
+.site-lede
+{
+    font-family: var(--font-serif);
+    font-size: var(--step-3);
+    line-height: 1.28;
+    max-width: 28ch;
+}
+
+.site-figure-note
+{
+    font-size: var(--step-small);
+    color: var(--ink-faint);
+    max-width: var(--measure);
+}
+
+.site-code
+{
+    font-family: var(--font-mono);
+    font-size: var(--step-small);
+    background: var(--paper-sunk);
+    border: var(--hairline);
+    border-radius: var(--radius);
+    padding: var(--space-3) var(--space-4);
+    overflow-x: auto;
+    white-space: pre;
+    color: var(--ink-soft);
+}
+
+.site-grid-2
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: var(--space-5);
+}
+
+/* --------------------------------------------------------------------------
+ * ShapeMark
+ * -------------------------------------------------------------------------- */
+
+.shape-mark[data-mark-size="mark"]
+{
+    width: 2.5rem;
+    flex: none;
+}
+
+.shape-mark[data-mark-size="large"]
+{
+    width: 10rem;
+}
+
+.shape-mark .tg-image__frame
+{
+    background: transparent;
+    border: none;
+    min-height: 0;
+}
+
+/* --------------------------------------------------------------------------
+ * ShapeBookshelf
+ * -------------------------------------------------------------------------- */
+
+.shape-bookshelf
+{
+    border-bottom: 1px solid var(--rule-strong);
+    background: var(--paper-sunk);
+    padding: 0 var(--space-5);
+}
+
+.shape-bookshelf .tg-list-box__caption
+{
+    display: none;
+}
+
+.shape-bookshelf .tg-list-box__list
+{
+    border: none;
+    background: transparent;
+    max-width: 1220px;
+    margin: 0 auto;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.shape-bookshelf .tg-list-box__item
+{
+    position: relative;
+    flex: 1 0 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    min-width: 9.5rem;
+    padding: var(--space-3) var(--space-4);
+    border-right: 1px solid var(--rule);
+    border-bottom: 2px solid transparent;
+}
+
+.shape-bookshelf .tg-list-box__item:first-child
+{
+    border-left: 1px solid var(--rule);
+}
+
+.shape-bookshelf .tg-list-box__marker
+{
+    display: none;
+}
+
+.shape-bookshelf .tg-list-box__label
+{
+    font-family: var(--font-serif);
+    font-size: var(--step-1);
+}
+
+.shape-bookshelf .tg-list-box__description--visible
+{
+    font-family: var(--font-mono);
+    font-size: var(--step-micro);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.shape-bookshelf .tg-list-box__badge--visible
+{
+    position: absolute;
+    top: var(--space-2);
+    right: var(--space-2);
+    margin-left: 0;
+    border: none;
+    padding: 0;
+    color: var(--rule-strong);
+}
+
+.shape-bookshelf .tg-list-box__item--selected
+{
+    background: var(--paper-raised);
+    border-bottom-color: var(--accent);
+}
+
+.shape-bookshelf .tg-list-box__item--selected .tg-list-box__badge--visible
+{
+    color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+ * ShapeSectionReader
+ * -------------------------------------------------------------------------- */
+
+.shape-section-reader .tg-panel__title
+{
+    font-family: var(--font-serif);
+    font-size: var(--step-4);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    text-transform: none;
+    color: var(--ink);
+    line-height: 1.1;
+}
+
+.shape-section-reader .tg-panel__header
+{
+    align-items: flex-start;
+}
+
+.shape-section-reader__standfirst
+{
+    max-width: 46ch;
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
+    line-height: 1.35;
+    color: var(--ink-soft);
+    margin-bottom: var(--space-5);
+}
+
+.shape-section-reader__prose
+{
+    max-width: var(--measure);
+    font-family: var(--font-serif);
+    font-size: var(--step-1);
+    line-height: 1.62;
+}
+
+.shape-section-reader__paragraph + .shape-section-reader__paragraph
+{
+    margin-top: var(--space-4);
+}
+
+.shape-section-reader__note
+{
+    margin-top: var(--space-5);
+    padding-left: var(--space-4);
+    border-left: 2px solid var(--accent);
+    font-family: var(--font-mono);
+    font-size: var(--step-small);
+    color: var(--ink-faint);
+    max-width: var(--measure);
+}
+
+/* --------------------------------------------------------------------------
+ * ShapeBoard
+ * -------------------------------------------------------------------------- */
+
+.shape-board__canvas
+{
+    display: block;
+    width: 100%;
+    height: auto;
+    background: var(--paper-sunk);
+    border: var(--hairline);
+    border-radius: var(--radius);
+}
+
+.shape-board__edge-line
+{
+    stroke: var(--rule-strong);
+    stroke-width: 0.3;
+}
+
+.shape-board__edge-label
+{
+    font-family: var(--font-mono);
+    font-size: 1.7px;
+    letter-spacing: 0.08px;
+    fill: var(--ink-faint);
+}
+
+.shape-board__edge--active .shape-board__edge-line
+{
+    stroke: var(--accent);
+    stroke-width: 0.5;
+}
+
+.shape-board__edge--active .shape-board__edge-label
+{
+    fill: var(--accent-ink);
+}
+
+.shape-board__node
+{
+    cursor: pointer;
+}
+
+.shape-board__node-plate
+{
+    fill: var(--paper-raised);
+    stroke: var(--rule-strong);
+    stroke-width: 0.3;
+}
+
+.shape-board__node[data-kind="counterpart"] .shape-board__node-plate
+{
+    stroke: var(--ink-soft);
+    stroke-dasharray: 1 0.8;
+}
+
+.shape-board__node[data-kind="core"] .shape-board__node-plate
+{
+    fill: var(--ink);
+}
+
+.shape-board__node[data-kind="core"] .shape-board__node-label
+{
+    fill: var(--paper);
+}
+
+.shape-board__node-label
+{
+    font-family: var(--font-mono);
+    font-size: 2.6px;
+    fill: var(--ink);
+    pointer-events: none;
+}
+
+.shape-board__node:hover .shape-board__node-plate
+{
+    stroke: var(--ink);
+}
+
+.shape-board__node--selected .shape-board__node-plate
+{
+    stroke: var(--accent);
+    stroke-width: 0.7;
+}
+
+.shape-board__node:focus-visible
+{
+    outline: none;
+}
+
+.shape-board__node:focus-visible .shape-board__node-plate
+{
+    stroke: var(--focus);
+    stroke-width: 0.7;
+}
+
+.shape-board__readout
+{
+    margin-top: var(--space-3);
+    font-size: var(--step-small);
+    color: var(--ink-faint);
+    min-height: 1.5em;
+}
+
+.shape-board__readout--selected
+{
+    color: var(--ink-soft);
+}
+
+/* --------------------------------------------------------------------------
+ * ShapeProjectTree, ShapeArtifactGrid, ShapeLineageView
+ * -------------------------------------------------------------------------- */
+
+.shape-project-tree .tg-tree-view__viewport
+{
+    max-height: 22rem;
+}
+
+.shape-artifact-grid .tg-data-grid__viewport
+{
+    max-height: 26rem;
+}
+
+.shape-artifact-grid .tg-data-grid__cell:last-child .tg-data-grid__text
+{
+    font-family: var(--font-mono);
+    font-size: var(--step-micro);
+    color: var(--ink-faint);
+}
+
+.shape-lineage-view .tg-tree-list-view__viewport
+{
+    max-height: none;
+}
+
+.shape-lineage-view .tg-tree-list-view__cell--tree .tg-tree-list-view__text
+{
+    font-family: var(--font-mono);
+}
+
+.shape-lineage-view .tg-tree-list-view__row[aria-level="1"] .tg-tree-list-view__text,
+.shape-lineage-view .tg-tree-list-view__row[aria-level="2"] .tg-tree-list-view__text
+{
+    color: var(--accent-ink);
+}
+
+/* --------------------------------------------------------------------------
+ * ShapeStatusLabel
+ * -------------------------------------------------------------------------- */
+
+.shape-status-label
+{
+    font-family: var(--font-mono);
+    font-size: var(--step-micro);
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 34ch;
+}
+
+/* --------------------------------------------------------------------------
+ * ShapeContactForm
+ * -------------------------------------------------------------------------- */
+
+.shape-contact-form
+{
+    max-width: 40rem;
+}
+
+.shape-contact-form .tg-form__body
+{
+    gap: var(--space-4);
+}
+
+/* --------------------------------------------------------------------------
+ * Gallery and reference pages
+ * -------------------------------------------------------------------------- */
+
+.gallery
+{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 21rem);
+    gap: var(--space-6);
+    align-items: start;
+}
+
+.gallery__specimens
+{
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    min-width: 0;
+}
+
+.gallery__monitor
+{
+    position: sticky;
+    top: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.specimen
+{
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.specimen__row
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    align-items: flex-end;
+}
+
+.specimen__row > *
+{
+    min-width: 0;
+}
+
+.specimen__stack
+{
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    flex: 1 1 16rem;
+}
+
+.specimen__note
+{
+    font-size: var(--step-small);
+    color: var(--ink-faint);
+    max-width: var(--measure);
+}
+
+.specimen__api
+{
+    font-family: var(--font-mono);
+    font-size: var(--step-micro);
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+}
+
+.monitor__grid .tg-data-grid__viewport
+{
+    max-height: 24rem;
+}
+
+.monitor__controls
+{
+    display: flex;
+    gap: var(--space-3);
+    align-items: center;
+}
+
+.verdict
+{
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border: var(--hairline);
+    border-left: 3px solid var(--good);
+    border-radius: var(--radius);
+    background: var(--paper-raised);
+    font-family: var(--font-mono);
+    font-size: var(--step-small);
+}
+
+.verdict--failed
+{
+    border-left-color: var(--bad);
+    color: var(--bad);
+}
+
+.lineage-ladder
+{
+    font-family: var(--font-mono);
+    font-size: var(--step-small);
+    color: var(--ink-soft);
+    line-height: 1.8;
+}
+
+.lineage-ladder__step
+{
+    display: block;
+}
+
+.lineage-ladder__arrow
+{
+    color: var(--rule-strong);
+}
+
+
+/* --------------------------------------------------------------------------
+ * Small spacing utilities, so pages need no inline styles
+ * -------------------------------------------------------------------------- */
+
+.site-space-top-small
+{
+    margin-top: var(--space-3);
+}
+
+.site-space-top
+{
+    margin-top: var(--space-4);
+}
+
+.site-space-top-large
+{
+    margin-top: var(--space-6);
+}
+
+.site-divider
+{
+    margin: var(--space-6) 0;
+}
+
+.specimen__column-narrow
+{
+    max-width: 22rem;
+}
+
+/* --------------------------------------------------------------------------
+ * Narrow screens
+ * -------------------------------------------------------------------------- */
+
+@media (max-width: 60rem)
+{
+    .site-columns,
+    .gallery
+    {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .site-column--aside,
+    .gallery__monitor
+    {
+        position: static;
+    }
+
+    .site-masthead
+    {
+        gap: var(--space-3);
+    }
+
+    .site-main
+    {
+        padding: var(--space-5) var(--space-4) var(--space-7);
+    }
+}

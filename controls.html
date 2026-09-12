@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gen-2 control gallery</title>
+    <meta name="description" content="Every control in the generic Gen-2 library, exercised without a single application class.">
+    <link rel="icon" href="assets/img/shape-mark.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/controls.css">
+    <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+    <div class="site">
+        <header class="site-masthead">
+            <div class="site-masthead__identity">
+                <div class="site-masthead__wordmark">
+                    <span class="site-masthead__name">Gen-2 control gallery</span>
+                    <span class="site-masthead__tagline">Fifteen controls &middot; no application classes</span>
+                </div>
+            </div>
+
+            <div class="site-masthead__spacer"></div>
+
+            <nav class="site-nav" aria-label="Sections of this site">
+                <a href="index.html">Space</a>
+                <a href="controls.html" aria-current="page">Controls</a>
+                <a href="three-gen.html">Three-Gen</a>
+            </nav>
+        </header>
+
+        <main class="site-main">
+            <p class="site-lede">The generic library, on its own.</p>
+            <p class="site-prose site-space-top">This page registers Gen 2 and nothing else. No application element is defined, no project module is imported, and every control below is being used exactly as an unrelated project would use it. The monitor on the right records the events the controls emit, live.</p>
+
+            <hr class="site-rule site-divider">
+
+            <div class="gallery">
+                <div class="gallery__specimens" id="specimens">
+
+                    <tg-panel heading="Label" subheading="HTMLElement > AbstractElement > Label">
+                        <div class="specimen">
+                            <div class="specimen__row">
+                                <tg-label text="Plain label"></tg-label>
+                                <tg-label text="Caption" variant="caption"></tg-label>
+                                <tg-label text="Heading" variant="heading"></tg-label>
+                                <tg-label text="Muted" muted></tg-label>
+                                <tg-label text="Required" required></tg-label>
+                            </div>
+                            <div class="specimen__row">
+                                <tg-label id="focusing-label" text="Click me: I focus the box beside me" variant="field" for="label-target"></tg-label>
+                                <tg-text-box id="label-target" placeholder="Focus target"></tg-text-box>
+                            </div>
+                            <p class="specimen__note">A label with a <code>for</code> attribute performs its abstract action by moving focus. Without one it reports <code>handled: false</code> rather than inventing a meaning.</p>
+                            <p class="specimen__api">text &middot; htmlFor &middot; variant &middot; muted &middot; required &middot; targetElement() &middot; abstractAction: activate</p>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="Button" subheading="HTMLElement > AbstractElement > Button">
+                        <div class="specimen">
+                            <div class="specimen__row">
+                                <tg-button text="Default" command="demo-default"></tg-button>
+                                <tg-button text="Primary" variant="primary" command="demo-primary"></tg-button>
+                                <tg-button text="Subtle" variant="subtle" command="demo-subtle"></tg-button>
+                                <tg-button text="Danger" variant="danger" command="demo-danger"></tg-button>
+                                <tg-button text="Small" size="small" command="demo-small"></tg-button>
+                                <tg-button text="Disabled" disabled command="demo-disabled"></tg-button>
+                                <tg-button id="busy-button" text="Busy for a second" command="button-busy"></tg-button>
+                            </div>
+                            <p class="specimen__note">A disabled or busy button still answers <code>performAction()</code>, reporting <code>handled: false</code>. Callers can tell "nothing happened" from "no such control".</p>
+                            <p class="specimen__api">text &middot; variant &middot; size &middot; disabled &middot; busy &middot; command &middot; invoke() &middot; abstractAction: invoke</p>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="TextBox" subheading="HTMLElement > AbstractElement > TextBox">
+                        <div class="specimen">
+                            <div class="specimen__row">
+                                <div class="specimen__stack">
+                                    <tg-text-box id="demo-text-box" name="plain" label="Ordinary" placeholder="Type, then press Enter" hint="Enter commits. Blur commits."></tg-text-box>
+                                    <tg-text-box name="required-field" label="Required" required hint="Submit-style validation"></tg-text-box>
+                                </div>
+                                <div class="specimen__stack">
+                                    <tg-text-box name="limited" label="Limited to 12" maxlength="12" placeholder="Twelve characters"></tg-text-box>
+                                    <tg-text-box name="readonly" label="Read only" value="Cannot be committed" readonly></tg-text-box>
+                                    <tg-text-box name="off" label="Disabled" value="No input" disabled></tg-text-box>
+                                </div>
+                            </div>
+                            <div class="specimen__row">
+                                <tg-button text="Set value" size="small" command="textbox-fill"></tg-button>
+                                <tg-button text="Commit" size="small" command="textbox-commit"></tg-button>
+                                <tg-button text="Show an error" size="small" command="textbox-error"></tg-button>
+                                <tg-button text="Clear" size="small" command="textbox-clear"></tg-button>
+                            </div>
+                            <p class="specimen__note">Typing emits <code>tg-input</code>. Committing emits <code>tg-change</code> and <code>tg-action</code>. The value property and the draft are different things, on purpose.</p>
+                            <p class="specimen__api">value &middot; draftValue &middot; label &middot; placeholder &middot; hint &middot; type &middot; maxLength &middot; disabled &middot; readOnly &middot; required &middot; commit() &middot; validate() &middot; abstractAction: commit</p>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="TextArea" subheading="HTMLElement > AbstractElement > TextArea">
+                        <div class="specimen">
+                            <div class="specimen__row">
+                                <div class="specimen__stack">
+                                    <tg-text-area id="demo-text-area" name="notes" label="Notes" rows="4" maxlength="240" hint="Ctrl+Enter commits."></tg-text-area>
+                                </div>
+                                <div class="specimen__stack">
+                                    <tg-text-area name="locked" label="Disabled" rows="4" value="Nothing to do here." disabled></tg-text-area>
+                                </div>
+                            </div>
+                            <p class="specimen__note">The counter appears only when a maximum is set, and turns when the limit is reached.</p>
+                            <p class="specimen__api">value &middot; draftValue &middot; rows &middot; maxLength &middot; autoGrow &middot; disabled &middot; readOnly &middot; required &middot; commit() &middot; abstractAction: commit</p>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="CheckBox" subheading="HTMLElement > AbstractElement > CheckBox">
+                        <div class="specimen">
+                            <div class="specimen__row">
+                                <div class="specimen__stack">
+                                    <tg-check-box id="demo-check-box" name="one" label="Ordinary" description="Click, or press Space."></tg-check-box>
+                                    <tg-check-box name="two" label="Checked to begin with" checked></tg-check-box>
+                                </div>
+                                <div class="specimen__stack">
+                                    <tg-check-box name="three" label="Indeterminate" indeterminate description="Neither on nor off."></tg-check-box>
+                                    <tg-check-box name="four" label="Disabled" disabled description="Reports handled: false."></tg-check-box>
+                                </div>
+                            </div>
+                            <div class="specimen__row">
+                                <tg-button text="Toggle first" size="small" command="check-toggle"></tg-button>
+                                <tg-button text="Check first" size="small" command="check-on"></tg-button>
+                                <tg-button text="Uncheck first" size="small" command="check-off"></tg-button>
+                            </div>
+                            <p class="specimen__note">Clicking and calling <code>toggle()</code> take the same path: the DOM listener turns the gesture into a payload and the abstract action does the rest.</p>
+                            <p class="specimen__api">checked &middot; indeterminate &middot; label &middot; description &middot; disabled &middot; required &middot; toggle() &middot; check() &middot; uncheck() &middot; abstractAction: toggle</p>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="RadioGroup" subheading="HTMLElement > AbstractElement > RadioGroup">
+                        <div class="specimen">
+                            <div class="specimen__row">
+                                <div class="specimen__stack">
+                                    <tg-radio-group id="demo-radio-group" name="cadence" label="Cadence"></tg-radio-group>
+                                </div>
+                                <div class="specimen__stack">
+                                    <tg-radio-group id="demo-radio-horizontal" name="scope" label="Scope" orientation="horizontal"></tg-radio-group>
+                                    <tg-radio-group id="demo-radio-disabled" name="locked-group" label="Disabled" disabled></tg-radio-group>
+                                </div>
+                            </div>
+                            <div class="specimen__row">
+                                <tg-button text="Select the third" size="small" command="radio-third"></tg-button>
+                                <tg-button text="Clear" size="small" command="radio-clear"></tg-button>
+                            </div>
+                            <p class="specimen__note">The group is the control. Options are data, and rows are reconciled by value, so replacing the options keeps the rows whose values survive.</p>
+                            <p class="specimen__api">items &middot; value &middot; orientation &middot; disabled &middot; required &middot; selectValue() &middot; getItem() &middot; abstractAction: select</p>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="DropDown" subheading="HTMLElement > AbstractElement > DropDown">
+                        <div class="specimen">
+                            <div class="specimen__row">
+                                <div class="specimen__stack">
+                                    <tg-drop-down id="demo-drop-down" name="material" label="Material" placeholder="Choose one" hint="Native picker, generic API."></tg-drop-down>
+                                </div>
+                                <div class="specimen__stack">
+                                    <tg-drop-down id="demo-drop-down-disabled" name="locked-list" label="Disabled" disabled></tg-drop-down>
+                                </div>
+                            </div>
+                            <div class="specimen__row">
+                                <tg-button text="Replace the options" size="small" command="dropdown-replace"></tg-button>
+                                <tg-button text="Select by value" size="small" command="dropdown-select"></tg-button>
+                            </div>
+                            <p class="specimen__note">Backed by a native select so typed navigation, popup placement and mobile pickers are the platform's.</p>
+                            <p class="specimen__api">items &middot; value &middot; placeholder &middot; disabled &middot; required &middot; selectValue() &middot; selectedItem &middot; abstractAction: select</p>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="ListBox" subheading="HTMLElement > AbstractElement > ListBox">
+                        <div class="specimen">
+                            <div class="specimen__row">
+                                <div class="specimen__stack">
+                                    <tg-list-box id="demo-list-box" class="specimen__column-narrow" label="Single selection"></tg-list-box>
+                                </div>
+                                <div class="specimen__stack">
+                                    <tg-list-box id="demo-list-multi" class="specimen__column-narrow" label="Multiple selection" selection-mode="multiple"></tg-list-box>
+                                    <tg-list-box id="demo-list-empty" label="Empty state" empty-text="Nothing here yet."></tg-list-box>
+                                </div>
+                            </div>
+                            <div class="specimen__row">
+                                <tg-button text="Add an item" size="small" command="list-add"></tg-button>
+                                <tg-button text="Remove the first" size="small" command="list-remove"></tg-button>
+                                <tg-button text="Select two" size="small" command="list-select-two"></tg-button>
+                                <tg-button text="Clear selection" size="small" command="list-clear"></tg-button>
+                                <tg-button text="Disable" size="small" command="list-disable"></tg-button>
+                            </div>
+                            <p class="specimen__note">Arrow keys move, Enter activates, double click activates, Ctrl+click extends a multiple selection. Selection and activation are separate events because they are separate intentions.</p>
+                            <p class="specimen__api">items &middot; value &middot; values &middot; selectionMode &middot; orientation &middot; activateOnSelect &middot; selectValue() &middot; toggleValue() &middot; activateValue() &middot; abstractAction: activate</p>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="TreeView" subheading="HTMLElement > AbstractElement > TreeView">
+                        <div class="specimen">
+                            <div class="specimen__row">
+                                <div class="specimen__stack">
+                                    <tg-tree-view id="demo-tree" label="Hierarchy"></tg-tree-view>
+                                </div>
+                                <div class="specimen__stack">
+                                    <tg-tree-view id="demo-tree-disabled" label="Disabled" disabled></tg-tree-view>
+                                </div>
+                            </div>
+                            <div class="specimen__row">
+                                <tg-button text="Expand all" size="small" command="tree-expand"></tg-button>
+                                <tg-button text="Collapse all" size="small" command="tree-collapse"></tg-button>
+                                <tg-button text="Reveal a deep node" size="small" command="tree-reveal"></tg-button>
+                                <tg-button text="Replace the data" size="small" command="tree-replace"></tg-button>
+                            </div>
+                            <p class="specimen__note">Visible nodes are flattened into one row list and reconciled by id. Expanding a branch inserts rows; it does not rebuild the tree.</p>
+                            <p class="specimen__api">nodes &middot; selectedId &middot; expandedIds &middot; expand() &middot; collapse() &middot; expandAll() &middot; selectNode() &middot; revealNode() &middot; abstractAction: activate</p>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="TreeListView" subheading="HTMLElement > AbstractElement > TreeListView">
+                        <div class="specimen">
+                            <tg-tree-list-view id="demo-tree-list" label="Hierarchy with columns"></tg-tree-list-view>
+                            <div class="specimen__row">
+                                <tg-button text="Expand all" size="small" command="treelist-expand"></tg-button>
+                                <tg-button text="Collapse all" size="small" command="treelist-collapse"></tg-button>
+                                <tg-button text="Drop a column" size="small" command="treelist-columns"></tg-button>
+                                <tg-button text="Hide the header" size="small" command="treelist-header"></tg-button>
+                            </div>
+                            <p class="specimen__note">A real treegrid: rows are reconciled by node id and cells by column key, so changing the columns keeps the rows and changing the data keeps the columns.</p>
+                            <p class="specimen__api">columns &middot; nodes &middot; treeColumnKey &middot; showHeader &middot; expand() &middot; selectNode() &middot; cellValue() &middot; abstractAction: activate</p>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="DataGrid" subheading="HTMLElement > AbstractElement > DataGrid">
+                        <div class="specimen">
+                            <tg-data-grid id="demo-grid" label="Records" selection-mode="multiple"></tg-data-grid>
+                            <div class="specimen__row">
+                                <tg-button text="Sort by size" size="small" command="grid-sort"></tg-button>
+                                <tg-button text="Add a row" size="small" command="grid-add"></tg-button>
+                                <tg-button text="Remove a row" size="small" command="grid-remove"></tg-button>
+                                <tg-button text="Empty it" size="small" command="grid-empty"></tg-button>
+                                <tg-button text="Restore" size="small" command="grid-restore"></tg-button>
+                            </div>
+                            <p class="specimen__note">Click a header to sort, double click a row to activate it, Space toggles a selection. Sorting is done on a copy; the rows array handed in is never reordered.</p>
+                            <p class="specimen__api">columns &middot; rows &middot; rowKey &middot; selectionMode &middot; sortBy() &middot; getRow() &middot; selectRow() &middot; displayedRows() &middot; abstractAction: activate</p>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="ImageView" subheading="HTMLElement > AbstractElement > ImageView">
+                        <div class="specimen">
+                            <div class="specimen__row">
+                                <div class="specimen__stack">
+                                    <tg-image id="demo-image" alt="A placeholder figure" caption="Loads on connection." ratio="4 / 3"></tg-image>
+                                </div>
+                                <div class="specimen__stack">
+                                    <tg-image id="demo-image-missing" alt="Nothing here" placeholder-text="No source" ratio="4 / 3"></tg-image>
+                                </div>
+                            </div>
+                            <div class="specimen__row">
+                                <tg-button text="Load" size="small" command="image-load"></tg-button>
+                                <tg-button text="Break it" size="small" command="image-break"></tg-button>
+                                <tg-button text="Clear" size="small" command="image-clear"></tg-button>
+                            </div>
+                            <p class="specimen__note">A failed load produces a readable message rather than a broken-image glyph, and emits <code>tg-error</code>. The class is ImageView because Image is a global constructor.</p>
+                            <p class="specimen__api">src &middot; alt &middot; caption &middot; fit &middot; ratio &middot; lazy &middot; loadState &middot; resolve() &middot; naturalSize() &middot; abstractAction: resolve</p>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="Panel" subheading="HTMLElement > AbstractElement > Panel">
+                        <div class="specimen">
+                            <tg-panel id="demo-panel" heading="A collapsible panel" subheading="Children written in HTML are adopted, not discarded." collapsible variant="inset">
+                                <p class="specimen__note">This paragraph was authored inside the element. On first build the panel moved it into its body container. It was moved, not recreated, so anything holding a reference to it still holds the same node.</p>
+                            </tg-panel>
+                            <div class="specimen__row">
+                                <tg-button text="Collapse" size="small" command="panel-collapse"></tg-button>
+                                <tg-button text="Expand" size="small" command="panel-expand"></tg-button>
+                                <tg-button text="Add content" size="small" command="panel-append"></tg-button>
+                            </div>
+                            <p class="specimen__note">Every panel on this page is this control. A panel that is not collapsible answers its abstract action with <code>handled: false</code>.</p>
+                            <p class="specimen__api">heading &middot; subheading &middot; collapsible &middot; collapsed &middot; variant &middot; expand() &middot; collapse() &middot; setContent() &middot; appendContent() &middot; abstractAction: toggle</p>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="Form" subheading="HTMLElement > AbstractElement > Form">
+                        <div class="specimen">
+                            <tg-form id="demo-form" heading="Composition" description="Six controls, discovered by contract rather than registered." submit-text="Submit" show-reset>
+                                <tg-text-box name="title" label="Title" required placeholder="Required"></tg-text-box>
+                                <tg-text-box name="email" label="Address" type="email" required placeholder="name@example.com"></tg-text-box>
+                                <tg-drop-down id="form-priority" name="priority" label="Priority" placeholder="Choose" required></tg-drop-down>
+                                <tg-radio-group id="form-cadence" name="cadence" label="Cadence" orientation="horizontal"></tg-radio-group>
+                                <tg-text-area name="body" label="Body" rows="3" maxlength="200"></tg-text-area>
+                                <tg-check-box name="accept" label="I have read the standards" required></tg-check-box>
+                            </tg-form>
+                            <div class="specimen__row">
+                                <tg-button text="Fill it in" size="small" command="form-fill"></tg-button>
+                                <tg-button text="Validate only" size="small" command="form-validate"></tg-button>
+                                <tg-button text="Set a field error" size="small" command="form-error"></tg-button>
+                                <tg-button text="Submit from script" size="small" command="form-submit"></tg-button>
+                            </div>
+                            <p class="specimen__note">Form imports no other control. A descendant takes part because it exposes <code>isFieldControl</code>, a name, a form value and a validate method, which is why a control from outside this library could join in.</p>
+                            <p class="specimen__api">getValues() &middot; setValues() &middot; validate() &middot; reset() &middot; submit() &middot; fields() &middot; setFieldError() &middot; abstractAction: submit</p>
+                        </div>
+                    </tg-panel>
+
+                    <tg-panel heading="StatusMeter" subheading="HTMLElement > AbstractElement > StatusMeter">
+                        <div class="specimen">
+                            <div class="specimen__row">
+                                <div class="specimen__stack">
+                                    <tg-status-meter id="demo-meter" label="Determinate" value="35" max="100" dismissible></tg-status-meter>
+                                    <tg-status-meter id="demo-meter-busy" label="Indeterminate" indeterminate state="busy" show-value></tg-status-meter>
+                                </div>
+                                <div class="specimen__stack">
+                                    <tg-status-meter id="demo-meter-error" label="With a status" value="80" state="error" message="Two checks failed." dismissible></tg-status-meter>
+                                    <tg-status-meter label="Quiet" value="100" state="success" show-value="false" message="Finished."></tg-status-meter>
+                                </div>
+                            </div>
+                            <div class="specimen__row">
+                                <tg-button text="Advance" size="small" command="meter-advance"></tg-button>
+                                <tg-button text="Report a warning" size="small" command="meter-warn"></tg-button>
+                                <tg-button text="Acknowledge" size="small" command="meter-ack"></tg-button>
+                                <tg-button text="Reset" size="small" command="meter-reset"></tg-button>
+                            </div>
+                            <p class="specimen__note">The hardest control to give an honest abstract action. It acknowledges: it takes notice of the current status and, when dismissible, clears it. See decision 4 in the decision record.</p>
+                            <p class="specimen__api">value &middot; max &middot; state &middot; message &middot; indeterminate &middot; dismissible &middot; setProgress() &middot; advance() &middot; report() &middot; snapshot() &middot; abstractAction: acknowledge</p>
+                        </div>
+                    </tg-panel>
+
+                </div>
+
+                <aside class="gallery__monitor">
+                    <tg-panel heading="Event monitor" subheading="Every event emitted by the controls on this page.">
+                        <div class="specimen">
+                            <div class="monitor__controls">
+                                <tg-button text="Clear" size="small" command="monitor-clear"></tg-button>
+                                <tg-check-box id="monitor-pause" label="Pause"></tg-check-box>
+                            </div>
+                            <tg-status-meter id="monitor-meter" label="Events seen" value="0" max="120" show-value></tg-status-meter>
+                            <tg-data-grid id="monitor-grid" class="monitor__grid" row-key="id" selection-mode="single" empty-text="Interact with a control." striped></tg-data-grid>
+                            <p class="specimen__note">The monitor is itself three Gen-2 controls: a grid, a meter and a checkbox. Nothing on this page knows that Shape Project Space exists.</p>
+                        </div>
+                    </tg-panel>
+                </aside>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <span>Gen-2 control gallery &middot; registers the generic library only</span>
+            <span><a href="three-gen.html">The lineages</a> &middot; <a href="index.html">The site</a></span>
+        </footer>
+    </div>
+
+    <script type="module" src="src/app/controls-page.js"></script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+/*
+ * TOKENS
+ * ============================================================================
+ * Design variables, the reset, and base typography.
+ *
+ * Three stylesheets, in the order the generations are stacked:
+ *
+ *     tokens.css     shared variables and the reset
+ *     controls.css   the Gen-2 library; no application vocabulary, ever
+ *     site.css       the Gen-3 site; layout and project identity
+ *
+ * controls.css is checked automatically for project vocabulary, exactly like
+ * the Gen-2 source is. A generic control that needs a project colour is a
+ * generic control that has stopped being generic.
+ */
+
+:root
+{
+    --paper: #f6f4ef;
+    --paper-raised: #fffefb;
+    --paper-sunk: #eceae2;
+    --ink: #17171b;
+    --ink-soft: #45464d;
+    --ink-faint: #74757c;
+    --rule: #d8d4c9;
+    --rule-strong: #b9b4a6;
+    --accent: #b0532a;
+    --accent-ink: #8c3f1e;
+    --accent-wash: rgba(176, 83, 42, 0.10);
+    --focus: #2c5c8f;
+    --focus-wash: rgba(44, 92, 143, 0.14);
+    --good: #3f6b46;
+    --warn: #8a6a1f;
+    --bad: #9c3030;
+
+    --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, ui-serif, serif;
+    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, "Cascadia Mono", Consolas, "Liberation Mono", monospace;
+
+    --step-0: 0.9375rem;
+    --step-1: 1.0625rem;
+    --step-2: 1.3125rem;
+    --step-3: 1.75rem;
+    --step-4: 2.375rem;
+    --step-small: 0.8125rem;
+    --step-micro: 0.6875rem;
+
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 3rem;
+    --space-8: 4.5rem;
+
+    --radius: 2px;
+    --measure: 64ch;
+    --hairline: 1px solid var(--rule);
+}
+
+@media (prefers-color-scheme: dark)
+{
+    :root
+    {
+        --paper: #121316;
+        --paper-raised: #191a1e;
+        --paper-sunk: #0d0e10;
+        --ink: #e8e6e0;
+        --ink-soft: #b3b2ad;
+        --ink-faint: #85858a;
+        --rule: #2d2f34;
+        --rule-strong: #43464d;
+        --accent: #d2794c;
+        --accent-ink: #e79a70;
+        --accent-wash: rgba(210, 121, 76, 0.14);
+        --focus: #74a7dd;
+        --focus-wash: rgba(116, 167, 221, 0.18);
+        --good: #7fae86;
+        --warn: #c9a95f;
+        --bad: #d98080;
+    }
+}
+
+*,
+*::before,
+*::after
+{
+    box-sizing: border-box;
+}
+
+html
+{
+    -webkit-text-size-adjust: 100%;
+}
+
+body
+{
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: var(--step-0);
+    line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+ul,
+ol
+{
+    margin: 0;
+}
+
+ul,
+ol
+{
+    padding: 0;
+    list-style: none;
+}
+
+a
+{
+    color: inherit;
+    text-decoration-color: var(--rule-strong);
+    text-underline-offset: 0.2em;
+}
+
+a:hover
+{
+    text-decoration-color: var(--accent);
+}
+
+button,
+input,
+select,
+textarea
+{
+    font: inherit;
+    color: inherit;
+}
+
+:focus-visible
+{
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+}
+
+[hidden]
+{
+    display: none !important;
+}
+
+::selection
+{
+    background: var(--accent-wash);
+}
+
+.tg-visually-hidden
+{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="The Shape mark: two splines crossing and continuing.">
+    <title>Shape</title>
+    <desc>Two splines that pass through one another and continue.</desc>
+    <g fill="none" stroke-linecap="round" stroke-width="3.5">
+        <path d="M 14 96 C 34 96, 40 24, 60 24 C 80 24, 86 96, 106 96" stroke="#1c1c1c" opacity="0.92" />
+        <path d="M 14 24 C 34 24, 40 96, 60 96 C 80 96, 86 24, 106 24" stroke="#b8552b" opacity="0.92" />
+    </g>
+    <circle cx="60" cy="60" r="2.6" fill="#1c1c1c" />
+</svg>

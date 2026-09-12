@@ -1,0 +1,22 @@
+{
+  "name": "shape-project-space",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Shape Project Space: a public website, a vanilla-JavaScript control library, and a reference implementation of the Three-Gen Design Pattern.",
+  "type": "module",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "check": "node tools/check-architecture.mjs && node tools/check-docs.mjs && node --test tests/**/*.test.js",
+    "check:architecture": "node tools/check-architecture.mjs",
+    "check:docs": "node tools/check-docs.mjs",
+    "test": "node --test tests/**/*.test.js",
+    "serve": "node tools/serve.mjs",
+    "package": "node tools/package-zip.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^30.0.1"
+  }
+}

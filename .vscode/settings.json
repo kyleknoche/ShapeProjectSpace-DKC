@@ -1,0 +1,11 @@
+{
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false,
+    "files.eol": "\n",
+    "javascript.preferences.importModuleSpecifierEnding": "js",
+    "search.exclude": {
+        "node_modules": true,
+        "dist": true
+    }
+}
