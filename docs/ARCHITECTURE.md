@@ -212,7 +212,7 @@ Layered like the source, and checked the same way.
 | `tests/gen2-independence.test.js` | A whole screen built from Gen 2 in a process where no application class exists. |
 | `tests/gen3-architecture.test.js` | Lineages, binding rather than duplicating, and every application element's behaviour. |
 | `tests/support-objects.test.js` | `ChildReconciler` and `HierarchyModel` directly. |
-| `tests/page-index.test.js` | The real `index.html` markup with the real page script: every id resolves, elements upgrade, navigation moves the site. |
+| `tests/page-workspace.test.js` | The real `workspace.html` markup with the real page script: every id resolves, elements upgrade, navigation moves the site. |
 | `tests/page-controls.test.js` | The real gallery: every control has a specimen, the monitor records, the commands run, and no application element is ever defined. |
 | `tests/page-three-gen.test.js` | The reference page's rendered lineages, tags, verbs and verdict, compared against the class objects themselves. |
 | `tools/check-architecture.mjs` | Layering, markup, handlers, naming, vocabulary, barrels, globals, page references, stylesheet layering. |

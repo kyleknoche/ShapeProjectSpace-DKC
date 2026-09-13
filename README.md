@@ -1,11 +1,11 @@
 # Shape Project Space
 
-A public website, a reusable vanilla-JavaScript control library, and a working
-reference implementation of the **Three-Gen Design Pattern** — in one repository,
-with no build step, no framework and no runtime dependencies.
+A public first-exposure page, a reusable vanilla-JavaScript control library, and
+a working reference implementation of the **Three-Gen Design Pattern** — in one
+repository, with no build step, no framework and no runtime dependencies.
 
-The site is the evidence. Every element on every page is an instance of the
-architecture the site describes.
+The working surface is the evidence. Every element on `workspace.html` is an
+instance of the architecture that page describes.
 
 ```
 HTMLElement
@@ -33,14 +33,16 @@ npm run check     # architecture rules, documentation agreement, 118 tests
 ES modules do not load from `file://` in most browsers, so open the site through
 `npm run serve` rather than by double-clicking the HTML.
 
-## The three pages
+## The four pages
 
 | Page | What it is | What it proves |
 | --- | --- | --- |
-| `index.html` | The public site. | Gen 3 is enough to build a real site. |
+| `index.html` | The public first exposure: bookshelf, Kyle and Shape at the table, and the game board. | The project can be encountered before it is explained. |
+| `workspace.html` | The working Shape Project Space. | Gen 3 is enough to build a real site. |
 | `controls.html` | The Gen-2 gallery, with a live event monitor. | Gen 2 works with no application present. |
 | `three-gen.html` | The pattern reference. | The documentation and the runtime agree. |
 
+`workspace.html` is the page built entirely from the Three-Gen elements.
 `controls.html` registers the generic library and imports nothing from `src/gen3`.
 `three-gen.html` reads the real class objects at load time: lineages come from
 prototype chains, generations from inheritance distance, and each control's

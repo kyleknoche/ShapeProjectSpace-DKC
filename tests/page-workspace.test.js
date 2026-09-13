@@ -3,9 +3,9 @@ import assert from "node:assert/strict";
 import { installPage, loadModule } from "./support/environment.js";
 
 /**
- * THE PUBLIC PAGE
+ * THE THREE-GEN WORKSPACE PAGE
  * =============================================================================
- * Loads the real index.html markup and runs its real page script against it.
+ * Loads the real workspace.html markup and runs its real page script against it.
  *
  * The unit tests prove that the controls work. This proves that the page is
  * wired to them: that every id the script reaches for exists, that the elements
@@ -14,7 +14,7 @@ import { installPage, loadModule } from "./support/environment.js";
  * immediately - if anyone opened one.
  */
 
-installPage("index.html");
+installPage("workspace.html");
 
 await loadModule("src/app/index-page.js");
 
@@ -36,7 +36,7 @@ test("every element the page script reaches for exists and has upgraded", functi
     {
         const element = document.getElementById(ids[index]);
 
-        assert.ok(element !== null, "#" + ids[index] + " is missing from index.html");
+        assert.ok(element !== null, "#" + ids[index] + " is missing from workspace.html");
         assert.equal(typeof element.performAction, "function", "#" + ids[index] + " did not upgrade to a Three-Gen element");
         assert.equal(element.isBuilt, true, "#" + ids[index] + " did not build its DOM");
     }

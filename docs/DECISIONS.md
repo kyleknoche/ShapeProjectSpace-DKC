@@ -270,3 +270,21 @@ breakpoints land where you expect. Explicit comparisons say which of several
 falsy values was meant. Plain loops step cleanly. This project prefers
 debuggability to brevity, and a consistent style is also a strong instruction to
 a later session about what its code should look like.
+
+---
+
+## 17. The first exposure and the working surface are separate pages
+
+**Context.** The original interaction mockup is the intended entrance to Shape
+Project Space: a photographic bookshelf above Kyle and Shape facing each other
+across a game board. The Three-Gen working surface is denser and proves the
+architecture, but it explains the project before a visitor has encountered it.
+
+**Decision.** `index.html` is the first-exposure experience. The complete
+Three-Gen application remains intact at `workspace.html`, with the control
+gallery and computed pattern reference beside it.
+
+**Why.** The entrance and the evidence do different jobs. Keeping them separate
+preserves the original visual identity without flattening the working
+architecture or pretending that a documentation surface is the same thing as a
+first encounter.

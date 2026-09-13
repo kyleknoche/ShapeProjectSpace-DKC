@@ -5,8 +5,8 @@ The current operational state of this repository, in one page.
 Read this first. Keep it short when you update it — a handoff document that tries
 to be complete becomes a document nobody trusts.
 
-**Last updated:** 2026-09-12
-**Last session:** initial construction and the first architecture review.
+**Last updated:** 2026-09-13
+**Last session:** restored the original first-exposure surface for publication.
 
 ---
 
@@ -35,9 +35,15 @@ npm run serve     # http://localhost:8080/
   `Panel`, `Form`, `DataGrid`, `StatusMeter`. Plus four support modules:
   `dom`, `ChildReconciler`, `HierarchyModel`, `navigation`.
 - **Gen 3** — 10 elements, `ShapeSpaceState`, and two data modules.
-- **Pages** — `index.html`, `controls.html`, `three-gen.html`.
+- **Pages** — `index.html` is the photographic bookshelf/game-board first
+  exposure; `workspace.html` preserves the complete Three-Gen working surface;
+  `controls.html` and `three-gen.html` remain the library and pattern references.
 
 ## What to be careful of
+
+**Do not collapse the first exposure and the working surface.** `index.html` is
+the encounter: bookshelf, Kyle and Shape, table, board. `workspace.html` is the
+architectural evidence. Decision 17 records why both exist.
 
 **Do not make `TreeListView` extend `TreeView`.** It looks like an oversight. It
 is decision 1, and it is the load-bearing constraint of the whole arrangement.

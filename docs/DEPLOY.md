@@ -8,7 +8,8 @@ What is in the repository is what the browser runs.
 ## What gets deployed
 
 ```
-index.html            the public site
+index.html            the public first-exposure page
+workspace.html        the Three-Gen working surface
 controls.html         the Gen-2 gallery
 three-gen.html        the pattern reference
 src/                  ES modules, served as-is
@@ -61,11 +62,13 @@ npm run check
 
 All three parts must pass. Then, in a browser:
 
-1. `index.html` — the bookshelf navigates, the board responds to clicks and
-   `Enter`, the mark loads, the inventory sorts, the contact form validates.
-2. `controls.html` — every specimen renders, the event monitor fills as you
+1. `index.html` — the two-row bookshelf renders, each book opens the board, the
+   participants dissolve, and Escape or "Return to the table" restores the scene.
+2. `workspace.html` — the bookshelf navigates, the board responds to clicks and
+   `Enter`, the mark loads, the inventory sorts, and the contact form validates.
+3. `controls.html` — every specimen renders, the event monitor fills as you
    interact, and the demonstration buttons work.
-3. `three-gen.html` — the verdict reads "No violations", and the lineage view
+4. `three-gen.html` — the verdict reads "No violations", and the lineage view
    fills.
 
 Then check the browser console. It should be empty; `console.log` in `src/` is a

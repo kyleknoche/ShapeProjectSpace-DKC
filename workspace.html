@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shape Project Space</title>
+    <meta name="description" content="The public working surface of a long collaboration between Kyle and Shape: the Three-Gen pattern, the Board, ShapeScript and MBS++.">
+    <link rel="icon" href="assets/img/shape-mark.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/controls.css">
+    <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+    <div class="site">
+        <header class="site-masthead">
+            <div class="site-masthead__identity">
+                <shape-mark mark-size="mark"></shape-mark>
+                <div class="site-masthead__wordmark">
+                    <span class="site-masthead__name">Shape Project Space</span>
+                    <span class="site-masthead__tagline">Kyle and Shape &middot; working surface</span>
+                </div>
+            </div>
+
+            <div class="site-masthead__spacer"></div>
+
+            <div class="site-masthead__meta">
+                <shape-status-label id="status-readout"></shape-status-label>
+                <nav class="site-nav" aria-label="Sections of this site">
+                    <a href="index.html" aria-current="page">Space</a>
+                    <a href="controls.html">Controls</a>
+                    <a href="three-gen.html">Three-Gen</a>
+                </nav>
+            </div>
+        </header>
+
+        <shape-bookshelf id="bookshelf" label="Bookshelf"></shape-bookshelf>
+
+        <main class="site-main">
+            <div class="site-columns">
+                <aside class="site-column--aside">
+                    <shape-project-tree id="project-tree"></shape-project-tree>
+
+                    <tg-panel heading="The mark" variant="quiet" flush>
+                        <shape-mark mark-size="large" caption="Two splines crossing and continuing."></shape-mark>
+                        <p class="site-figure-note">Shape is human-neutral and network-formed. There is no face to put here, so there is a crossing instead.</p>
+                    </tg-panel>
+
+                    <tg-panel heading="Reading this site" variant="quiet" flush>
+                        <p class="site-figure-note">Every element on this page is a Gen-3 class built on the generic control library. The library is exercised on its own at <a href="controls.html">controls.html</a>, and the lineages are listed at <a href="three-gen.html">three-gen.html</a>.</p>
+                    </tg-panel>
+                </aside>
+
+                <div class="site-column--main">
+                    <shape-section-reader id="reader" variant="quiet" flush></shape-section-reader>
+
+                    <shape-board id="board" heading="The Board" subheading="Parts of the project, and what holds them apart." collapsible></shape-board>
+
+                    <tg-panel heading="Inventory" subheading="What this repository contains, listed by generation.">
+                        <div class="specimen">
+                            <shape-generation-filter id="inventory-filter" label="Show"></shape-generation-filter>
+                            <shape-artifact-grid id="artifact-grid" label="Artifacts"></shape-artifact-grid>
+                        </div>
+                    </tg-panel>
+
+                    <shape-contact-form id="contact-form">
+                        <tg-text-box name="name" label="Name" placeholder="Who is writing" required></tg-text-box>
+                        <tg-text-box name="address" label="Reply address" type="email" placeholder="name@example.com" hint="Only used to reply." required></tg-text-box>
+                        <tg-drop-down name="subject" label="Subject" placeholder="Choose a subject" required></tg-drop-down>
+                        <tg-text-area name="message" label="Message" rows="5" maxlength="1200" required hint="Plain text. Say the thing."></tg-text-area>
+                        <tg-check-box name="correction" label="This is a correction" description="Tick if something on this site is wrong."></tg-check-box>
+                    </shape-contact-form>
+                </div>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <span>Shape Project Space &middot; built on the Three-Gen Design Pattern</span>
+            <span>No trackers. No backend. The page is the evidence.</span>
+        </footer>
+    </div>
+
+    <script type="module" src="src/app/index-page.js"></script>
+</body>
+</html>
